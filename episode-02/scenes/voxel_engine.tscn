@@ -1,0 +1,126 @@
+[gd_scene load_steps=17 format=3 uid="uid://c7nyl1d2xhsfs"]
+
+[ext_resource type="Script" uid="uid://cbh0ilowu7ye0" path="res://scripts/voxel_engine.gd" id="1_ps217"]
+[ext_resource type="Texture2D" uid="uid://r0jcnp2jsv6x" path="res://assets/test.png" id="2_w4k74"]
+[ext_resource type="Texture2D" uid="uid://r10b1gjkahn8" path="res://assets/selection.png" id="3_1ynvo"]
+[ext_resource type="Script" uid="uid://dkehu32hlwjtg" path="res://scripts/player.gd" id="3_8ls5l"]
+[ext_resource type="Script" uid="uid://csiuhh2naqj36" path="res://scripts/chunk.gd" id="3_bx44p"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ps217"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_w4k74"]
+sky_material = SubResource("ProceduralSkyMaterial_ps217")
+
+[sub_resource type="Environment" id="Environment_8ls5l"]
+background_mode = 2
+sky = SubResource("Sky_w4k74")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8ls5l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ls5l"]
+atlas = ExtResource("2_w4k74")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ynvo"]
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = SubResource("AtlasTexture_8ls5l")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bx44p"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("3_1ynvo")
+albedo_texture_force_srgb = true
+uv1_offset = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_v5fa5"]
+material = SubResource("StandardMaterial3D_bx44p")
+size = Vector3(1.02, 1.02, 1.02)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_w4k74"]
+radius = 0.3
+height = 1.6
+
+[sub_resource type="Gradient" id="Gradient_8ls5l"]
+offsets = PackedFloat32Array(0.463127, 0.469027)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1ynvo"]
+gradient = SubResource("Gradient_8ls5l")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="VoxelEngine" type="Node3D"]
+script = ExtResource("1_ps217")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8ls5l")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="chunk" type="MeshInstance3D" parent="."]
+material_override = SubResource("ShaderMaterial_8ls5l")
+material_overlay = SubResource("StandardMaterial3D_1ynvo")
+script = ExtResource("3_bx44p")
+
+[node name="CubeSelection" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CubeSelection"]
+mesh = SubResource("BoxMesh_v5fa5")
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 50, 16)
+script = ExtResource("3_8ls5l")
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="RayCast3D" type="RayCast3D" parent="Player/Camera3D"]
+target_position = Vector3(0, 0, -5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("CapsuleShape3D_w4k74")
+
+[node name="FPSLabel" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 60
+text = "FPS : "
+
+[node name="TrianglesLabel" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -311.0
+offset_top = 100.0
+offset_bottom = 183.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 60
+text = "Triangles : "
+
+[node name="Pointer" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.2, 0.2)
+pivot_offset = Vector2(32, 32)
+texture = SubResource("GradientTexture2D_1ynvo")

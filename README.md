@@ -19,6 +19,15 @@ You’ll learn:
 - Using `FastNoiseLite` to generate basic Perlin terrain
 - Rendering millions of triangles (and melting your GPU 😅)
 
+### **Episode 02 — Block Placement, Block Destruction & Face Culling**  
+**Folder:** `/episode-02`
+
+You’ll learn:
+- Introducing your first voxel optimisation: **block face culling**
+- Implementing **real-time block interaction** (place / remove blocks)
+- Rebuilding chunk meshes dynamically (and freezing your CPU 🥶)
+
+
 ---
 
 ## 📦 Download Code
