@@ -27,6 +27,13 @@ You’ll learn:
 - Implementing **real-time block interaction** (place / remove blocks)
 - Rebuilding chunk meshes dynamically (and freezing your CPU 🥶)
 
+### **Episode 03 — Chunk Loading & World Scaling**
+**Folder:** `/episode-03`
+
+You’ll learn:
+- Breaking the world into **chunks** for scalable voxel terrain
+- Managing **chunk loading & updates** at runtime
+- Handling chunk boundaries (yes… neighbours matter 👀)
 
 ---
 
