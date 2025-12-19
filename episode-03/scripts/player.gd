@@ -25,7 +25,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event.is_action_pressed("ui_cancel"):
 		get_tree().quit()
 	
-	elif event is InputEventMouseButton and event.button_index == 2 and event.is_pressed():
+	elif event is InputEventMouseButton and event.button_index == 1 and event.is_pressed():
 		if raycast.is_colliding():
 			var collider = raycast.get_collider()
 			if collider:
@@ -38,7 +38,7 @@ func _unhandled_input(event: InputEvent) -> void:
 					
 					chunk.delete_block(block_coords)
 				
-	elif event is InputEventMouseButton and event.button_index == 1 and event.is_pressed():
+	elif event is InputEventMouseButton and event.button_index == 2 and event.is_pressed():
 		if raycast.is_colliding():
 			var collider = raycast.get_collider()
 			if collider:
