@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=3 uid="uid://cutiyykvhntvg"]
+
+[ext_resource type="Shader" uid="uid://5qp44phmbch0" path="res://shaders/customAtlas.gdshader" id="1_c3gog"]
+[ext_resource type="Texture2D" uid="uid://r0jcnp2jsv6x" path="res://assets/blocks.png" id="1_jtw3q"]
+[ext_resource type="Script" uid="uid://csiuhh2naqj36" path="res://scripts/chunk.gd" id="2_c3gog"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c3gog"]
+render_priority = 0
+shader = ExtResource("1_c3gog")
+shader_parameter/atlas_texture = ExtResource("1_jtw3q")
+shader_parameter/tile_size = 0.5
+
+[node name="chunk" type="MeshInstance3D"]
+material_override = SubResource("ShaderMaterial_c3gog")
+script = ExtResource("2_c3gog")

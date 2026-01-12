@@ -35,6 +35,14 @@ You’ll learn:
 - Managing **chunk loading & updates** at runtime
 - Handling chunk boundaries (yes… neighbours matter 👀)
 
+### **Episode 04 — Chunk Performance, Load Times & Greedy Meshing**
+**Folder:** `/episode-04`
+
+You’ll learn:
+- What *actually* breaks when you scale a voxel world too far
+- Implementing **greedy meshing** to drastically reduce geometry
+- Optimising chunk rebuilds for faster world loading
+
 ---
 
 ## 📦 Download Code
