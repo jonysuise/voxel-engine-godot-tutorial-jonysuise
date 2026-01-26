@@ -1,0 +1,108 @@
+[gd_scene load_steps=6 format=3 uid="uid://devkvritwyjqi"]
+
+[ext_resource type="Script" uid="uid://dm0ba8xoxj3qf" path="res://scripts/launcher.gd" id="1_m736f"]
+[ext_resource type="Texture2D" uid="uid://0dr0da62qdjh" path="res://assets/screenshot.png" id="2_m736f"]
+
+[sub_resource type="SystemFont" id="SystemFont_cm6pl"]
+subpixel_positioning = 0
+
+[sub_resource type="Theme" id="Theme_wr5gk"]
+default_font = SubResource("SystemFont_cm6pl")
+default_font_size = 32
+
+[sub_resource type="SystemFont" id="SystemFont_m736f"]
+
+[node name="Launcher" type="CanvasLayer"]
+script = ExtResource("1_m736f")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.415686)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_m736f")
+expand_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_wr5gk")
+theme_override_constants/separation = 30
+
+[node name="lblTitle" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("SystemFont_m736f")
+theme_override_font_sizes/font_size = 64
+text = "GODOT MINECRAFT PRE-CLASSIC
+LAUNCHER"
+horizontal_alignment = 1
+
+[node name="versionDropDown" type="OptionButton" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/h_separation = 20
+theme_override_constants/line_spacing = 10
+theme_override_font_sizes/font_size = 32
+theme_override_constants/arrow_margin = 20
+selected = 0
+item_count = 3
+popup/item_0/text = "version 1"
+popup/item_0/id = 0
+popup/item_1/text = "version 2"
+popup/item_1/id = 1
+popup/item_2/text = "version 3"
+popup/item_2/id = 2
+
+[node name="chkLoadFromSave" type="CheckBox" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 30
+text = "Load From Save"
+
+[node name="hboxSeed" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="lblSeed" type="Label" parent="VBoxContainer/hboxSeed"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Seed :"
+
+[node name="lblSeedValue" type="Label" parent="VBoxContainer/hboxSeed"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "0"
+
+[node name="seedSlider" type="HSlider" parent="VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+max_value = 1e+08
+rounded = true
+
+[node name="btnLoad" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 32
+text = "Load"

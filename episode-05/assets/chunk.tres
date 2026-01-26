@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bqtbhjs8l6evc"]
+
+[ext_resource type="Shader" uid="uid://b0cq0kexf1rs8" path="res://shaders/fog.gdshader" id="1_j1j85"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_j1j85")
+shader_parameter/player_world_pos = Vector3(0, 0, 0)
+shader_parameter/fog_start = 6.0
+shader_parameter/fog_end = 36.0
+shader_parameter/lit_fog_start = 128.0
+shader_parameter/lit_fog_end = 256.0
+shader_parameter/darken_max = 1.0
+shader_parameter/dark_luma_threshold = 0.3
+shader_parameter/version = 1

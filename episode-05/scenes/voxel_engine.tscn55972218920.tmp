@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://c7nyl1d2xhsfs"]
+
+[ext_resource type="Script" uid="uid://ddcghjcjfqk1d" path="res://scripts/chunk_manager.gd" id="2_1ynvo"]
+[ext_resource type="Shader" uid="uid://cuama08y7g6n" path="res://shaders/block_selection_v1.gdshader" id="2_8ls5l"]
+[ext_resource type="Script" uid="uid://dkehu32hlwjtg" path="res://scripts/player.gd" id="3_8ls5l"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1ynvo"]
+render_priority = 0
+shader = ExtResource("2_8ls5l")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/speed = 8.0
+shader_parameter/min_alpha = 0.0
+shader_parameter/max_alpha = 0.15
+
+[sub_resource type="QuadMesh" id="QuadMesh_8ls5l"]
+material = SubResource("ShaderMaterial_1ynvo")
+
+[sub_resource type="Gradient" id="Gradient_8ls5l"]
+offsets = PackedFloat32Array(0.463127, 0.469027)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1ynvo"]
+gradient = SubResource("Gradient_8ls5l")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="VoxelEngine" type="Node3D"]
+
+[node name="ChunkManager" type="Node" parent="."]
+script = ExtResource("2_1ynvo")
+
+[node name="CubeSelection" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CubeSelection"]
+mesh = SubResource("QuadMesh_8ls5l")
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 70, 0)
+script = ExtResource("3_8ls5l")
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, 0)
+
+[node name="Pointer" type="TextureRect" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.2, 0.2)
+pivot_offset = Vector2(32, 32)
+texture = SubResource("GradientTexture2D_1ynvo")

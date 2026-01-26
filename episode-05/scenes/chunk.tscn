@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://cutiyykvhntvg"]
+
+[ext_resource type="Texture2D" uid="uid://b2038g3yujeav" path="res://assets/blocks.png" id="1_jtw3q"]
+[ext_resource type="Script" uid="uid://csiuhh2naqj36" path="res://scripts/chunk.gd" id="2_c3gog"]
+[ext_resource type="Material" uid="uid://bqtbhjs8l6evc" path="res://assets/chunk.tres" id="3_c3gog"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jtw3q"]
+atlas = ExtResource("1_jtw3q")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c3gog"]
+next_pass = ExtResource("3_c3gog")
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = SubResource("AtlasTexture_jtw3q")
+texture_filter = 0
+
+[node name="Chunk" type="Node3D"]
+script = ExtResource("2_c3gog")
+
+[node name="Section0" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_c3gog")
+
+[node name="Section1" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_c3gog")
+
+[node name="Section2" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_c3gog")
+
+[node name="Section3" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_c3gog")
