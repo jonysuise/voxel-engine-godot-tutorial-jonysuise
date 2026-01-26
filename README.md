@@ -43,6 +43,15 @@ You’ll learn:
 - Implementing **greedy meshing** to drastically reduce geometry
 - Optimising chunk rebuilds for faster world loading
 
+### **Episode 05 — Remaking Minecraft pre-classic era**
+**Folder:** `/episode-05`
+
+You’ll learn:
+- How Minecraft’s **pre-classic versions** were structured and why they looked so rough
+- Rebuilding **early terrain generation** and core voxel rules from scratch
+- Evolving the engine across multiple pre-classic versions
+- Creating a simple **launcher** to switch between versions and load different worlds
+
 ---
 
 ## 📦 Download Code
